@@ -13,12 +13,21 @@ const ul = document.querySelector('ul');
 const list = new ListTemplate(ul);
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+    let values;
+    values = [tofrom.value, details.value, amount.valueAsNumber];
     let doc;
     if (type.value === 'invoice') {
-        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+        doc = new Invoice(...values);
     }
     else {
-        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+        doc = new Payment(...values);
     }
     list.render(doc, type.value, 'end');
 });
+// let arr = ['ryu', 25, true]
+// arr[0] = false;
+// arr[1] = 'youshi';
+// arr = [30, false, 'yoshi']
+// let tup: [string, number, boolean] = ['ryu', 25, true];
+// tup[0] = 'false';
+// tup[1] = 2;
